@@ -3,16 +3,40 @@ import {numberOfErrors, useState} from 'react';
 
 function App() {
 
-  let [numberOfErrors, setNumberOfErrors] = useState(0);
+  const [numberOfErrors, setNumberOfErrors] = useState(0);
+
+  const [lastLetter, setLastLetter] = useState('');
 
   const handleButton = (ev) => {
+    ev.preventDefault();
+    setNumberOfErrors(numberOfErrors+1);
+  };
+  const handleLetter = (ev) => {
 
-    numberOfErrors++;
-    setNumberOfErrors(numberOfErrors);
+    const inputLastLetter = ev.target.value;
 
-
+    if (inputLastLetter.includes) {
+      
+    } else {
+      
+    }
   }
 
+
+
+
+  // const handleLetter = (ev) => {
+  //   ev.preventDefault();
+  // const inputLastLetter = ev.target.value;
+
+  //   if (/[a-zA-ZñÑáéíóúüÁÉÍÓÚÜ]/.test(inputLastLetter
+  //   )) {
+  //     setLastLetter(ev.target.value);
+
+  //   } else {
+  //     setLastLetter('');
+  //   }
+  // };
 
   return (<div className="App">{<div className="page">
   <header>
@@ -47,7 +71,7 @@ function App() {
       </div>
       <form className="form">
         <label className="title" for="last-letter">Escribe una letra:</label>
-        <input
+        <input onChange={handleLetter}
           autocomplete="off"
           className="form__input"
           maxlength="1"
@@ -57,7 +81,8 @@ function App() {
         />
       </form>
     </section>
-    <section className= {`dummy error- ${numberOfErrors}`}>
+    
+    <section className= {`dummy error-${numberOfErrors}`}>
       <span className="error-13 eye"></span>
       <span className="error-12 eye"></span>
       <span className="error-11 line"></span>
@@ -71,7 +96,7 @@ function App() {
       <span className="error-3 line"></span>
       <span className="error-2 line"></span>
       <span className="error-1 line"></span>
-      <button onClick={handleButton}>Incrementar</button>
+      <input onClick={handleButton} value= 'Incrementar'/>
     </section>
   </main>
 </div>
