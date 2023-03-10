@@ -7,36 +7,35 @@ function App() {
 
   const [lastLetter, setLastLetter] = useState('');
 
+  const [word, setWord] = useState('katakroker');
+
   const handleButton = (ev) => {
     ev.preventDefault();
     setNumberOfErrors(numberOfErrors+1);
   };
+
+
+
+  // const renderSolutionLetters = (word) => {
+  //   const wordLetters = word.split('');
+
+  //   return wordLetters.map(() => {
+  //     return <li class="letter"></li>;
+  //   })
+  // }
+
+
   const handleLetter = (ev) => {
+    ev.preventDefault();
+  const inputLastLetter = ev.target.value;
 
-    const inputLastLetter = ev.target.value;
-
-    if (inputLastLetter.includes) {
-      
+    if (/[a-zA-ZñÑáéíóúüÁÉÍÓÚÜ´¨]/.test(inputLastLetter
+    )) {
+      setLastLetter(ev.target.value);
     } else {
-      
+      setLastLetter('');
     }
-  }
-
-
-
-
-  // const handleLetter = (ev) => {
-  //   ev.preventDefault();
-  // const inputLastLetter = ev.target.value;
-
-  //   if (/[a-zA-ZñÑáéíóúüÁÉÍÓÚÜ]/.test(inputLastLetter
-  //   )) {
-  //     setLastLetter(ev.target.value);
-
-  //   } else {
-  //     setLastLetter('');
-  //   }
-  // };
+  };
 
   return (<div className="App">{<div className="page">
   <header>
@@ -46,8 +45,10 @@ function App() {
     <section>
       <div className="solution">
         <h2 className="title">Solución:</h2>
-        <ul className="letters">
-          <li className="letter">k</li>
+        <ul className="letters" {renderSolutionLetters()}>
+          
+
+          {/* <li className="letter">k</li>
           <li className="letter">a</li>
           <li className="letter"></li>
           <li className="letter">a</li>
@@ -56,7 +57,7 @@ function App() {
           <li className="letter"></li>
           <li className="letter">k</li>
           <li className="letter">e</li>
-          <li className="letter">r</li>
+          <li className="letter">r</li> */}
         </ul>
       </div>
       <div className="error">
@@ -78,6 +79,7 @@ function App() {
           type="text"
           name="last-letter"
           id="last-letter"
+          value={lastLetter}
         />
       </form>
     </section>
